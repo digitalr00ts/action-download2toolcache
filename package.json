@@ -5,8 +5,8 @@
   "description": "TypeScript template action",
   "main": "dist/index.js",
   "scripts": {
-    "build": "ncc build src/index.ts",
-    "build:watch": "ncc build --watch src/index.ts",
+    "build": "ncc build src/main.ts",
+    "build:watch": "ncc build --watch src/main.ts",
     "format": "prettier --write '**/*.ts'",
     "lint": "pre-commit run --all",
     "run": "ncc run",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/digitalr00ts/setup-bin.git"
   },
   "keywords": [
     "actions",
