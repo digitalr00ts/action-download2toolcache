@@ -5556,8 +5556,7 @@ function getConfig() {
     }
     const command = core.getInput('command');
     const subPath = core.getInput('subPath');
-    const config = { uri, name, version, command, subPath };
-    return config;
+    return { uri, name, version, command, subPath };
 }
 exports.getConfig = getConfig;
 
@@ -5603,16 +5602,16 @@ const tc = __importStar(__nccwpck_require__(784));
 function extract(uri, file) {
     return __awaiter(this, void 0, void 0, function* () {
         if (uri.endsWith(`.tar.gz`)) {
-            return yield tc.extractTar(file);
+            return tc.extractTar(file);
         }
         if (uri.endsWith(`.pkg`)) {
-            return yield tc.extractXar(file);
+            return tc.extractXar(file);
         }
         if (uri.endsWith(`.7z`)) {
-            return yield tc.extract7z(file);
+            return tc.extract7z(file);
         }
         if (uri.endsWith(`.zip`)) {
-            return yield tc.extractZip(file);
+            return tc.extractZip(file);
         }
         return file;
     });
@@ -5736,9 +5735,9 @@ exports.getTool = void 0;
 const core = __importStar(__nccwpck_require__(186));
 const tc = __importStar(__nccwpck_require__(784));
 const extract_1 = __nccwpck_require__(406);
-const os_1 = __nccwpck_require__(37);
 const fs_1 = __nccwpck_require__(147);
 const path_1 = __importDefault(__nccwpck_require__(17));
+const os_1 = __nccwpck_require__(37);
 function getTool(config) {
     return __awaiter(this, void 0, void 0, function* () {
         process.env.RUNNER_TOOL_CACHE = process.env.RUNNER_TOOL_CACHE || (0, os_1.tmpdir)();
@@ -5760,7 +5759,7 @@ function getTool(config) {
             const p = yield tc.cacheDir(extractedPath, config.name, config.version);
             return outPath(p);
         }
-        return yield tc.cacheFile(extractedPath, config.name, config.name, config.version);
+        return tc.cacheFile(extractedPath, config.name, config.name, config.version);
     });
 }
 exports.getTool = getTool;

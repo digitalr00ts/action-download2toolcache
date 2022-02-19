@@ -2,7 +2,7 @@
 
 [![Actions Status](https://github.com/supplypike/setup-bin/workflows/build-test/badge.svg)](https://github.com/supplypike/setup-bin/actions)
 
-This action sets up a binary in \$PATH for use in actions
+This action sets up a binary in $PATH for use in actions
 
 ```yaml
 steps:

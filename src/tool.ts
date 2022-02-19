@@ -2,9 +2,9 @@ import * as core from '@actions/core'
 import * as tc from '@actions/tool-cache'
 import {Config} from './config'
 import {extract} from './extract'
-import {tmpdir} from 'os'
 import {lstatSync} from 'fs'
 import path from 'path'
+import {tmpdir} from 'os'
 
 export async function getTool(config: Config): Promise<string> {
   process.env.RUNNER_TOOL_CACHE = process.env.RUNNER_TOOL_CACHE || tmpdir()
@@ -30,10 +30,5 @@ export async function getTool(config: Config): Promise<string> {
     const p = await tc.cacheDir(extractedPath, config.name, config.version)
     return outPath(p)
   }
-  return await tc.cacheFile(
-    extractedPath,
-    config.name,
-    config.name,
-    config.version
-  )
+  return tc.cacheFile(extractedPath, config.name, config.name, config.version)
 }
