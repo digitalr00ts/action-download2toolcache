@@ -2,10 +2,15 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  pre-commit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          cache: npm
+      - run: npm ci
       - uses: digitalr00ts/action-pre-commit@v0
   test-basic:
     runs-on: ubuntu-latest
