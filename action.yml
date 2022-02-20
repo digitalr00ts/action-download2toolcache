@@ -17,6 +17,12 @@ inputs:
   subPath:
     required: false
     description: path to tool in archive
+  auth_username:
+    required: false
+    description: username to authenticate download
+  auth_password:
+    required: false
+    description: password to authenticate download
 runs:
   using: 'node12'
   main: 'dist/index.js'

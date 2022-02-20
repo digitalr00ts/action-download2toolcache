@@ -6,6 +6,7 @@ export interface Config {
   version: string
   command?: string
   subPath?: string
+  creds?: string
 }
 
 export function getConfig(): Config {
@@ -24,5 +25,10 @@ export function getConfig(): Config {
   const command: string = core.getInput('command')
   const subPath: string = core.getInput('subPath')
 
-  return {uri, name, version, command, subPath}
+  const auth_username = core.getInput('auth username')
+  const auth_password = core.getInput('auth_password')
+  const creds =
+    auth_username && auth_password ? Buffer.from(`${auth_username}:${auth_password}`).toString('base64') : ''
+
+  return {uri, name, version, command, subPath, creds}
 }

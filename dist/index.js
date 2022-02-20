@@ -5556,7 +5556,10 @@ function getConfig() {
     }
     const command = core.getInput('command');
     const subPath = core.getInput('subPath');
-    return { uri, name, version, command, subPath };
+    const auth_username = core.getInput('auth username');
+    const auth_password = core.getInput('auth_password');
+    const creds = auth_username && auth_password ? Buffer.from(`${auth_username}:${auth_password}`).toString('base64') : '';
+    return { uri, name, version, command, subPath, creds };
 }
 exports.getConfig = getConfig;
 
@@ -5752,7 +5755,7 @@ function getTool(config) {
         if (cachedPath) {
             return outPath(cachedPath);
         }
-        const download = yield tc.downloadTool(config.uri);
+        const download = yield tc.downloadTool(config.uri, undefined, config.creds ? `Basic ${config.creds}` : undefined);
         const extractedPath = yield (0, extract_1.extract)(config.uri, download);
         core.info(extractedPath);
         if ((0, fs_1.lstatSync)(extractedPath).isDirectory()) {

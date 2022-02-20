@@ -22,7 +22,7 @@ export async function getTool(config: Config): Promise<string> {
     return outPath(cachedPath)
   }
 
-  const download = await tc.downloadTool(config.uri)
+  const download = await tc.downloadTool(config.uri, undefined, config.creds ? `Basic ${config.creds}` : undefined)
   const extractedPath = await extract(config.uri, download)
   core.info(extractedPath)
 
