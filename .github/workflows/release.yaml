@@ -1,0 +1,17 @@
+name: Release
+
+on:
+  workflow_run:
+    workflows: [CI]
+    branches: [trunk]
+    types: [completed]
+  workflow_dispatch:
+
+concurrency: ${{ github.workflow }}
+
+jobs:
+  release:
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
+    uses: digitalr00ts/actions-shared/.github/workflows/shared_release_v1.yaml@v0
+    permissions:
+      contents: write
