@@ -1,4 +1,4 @@
-name: 'setup-binary'
+name: 'download2toolcache'
 description: cache and install a binary to $PATH
 author: supplypike
 inputs:
