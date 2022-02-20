@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm run lint
+      - uses: digitalr00ts/action-pre-commit@v0
   test-basic:
     runs-on: ubuntu-latest
     steps:
